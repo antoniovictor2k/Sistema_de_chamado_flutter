@@ -57,11 +57,11 @@ class ApiService {
 
     // Dados do chamado
     final Map<String, String> chamadoData = {
-      'customer_id': idUser, // Defina o idUser como necessário
-      'department_id': idDepartment, // Defina o idDepartment como necessário
+      'customer_id': idUser,
+      'department_id': idDepartment, 
       'subject': subject,
       'message': message,
-      'category_id': category, // Defina category como necessário
+      'category_id': category, 
       'custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]': '',
       'custom_field[468245ce8477159f3e7f88cf06f93b6d]': branch,
       'custom_field[dcc9450fa904dc9de1e4e90cf43de37b]': '',
@@ -72,10 +72,10 @@ class ApiService {
     // Verificando a categoria no sistema de software de classificação
     for (var item in sistemaSoftwareClassificacao) {
       if (item['nome'] == category) {
-        chamadoData['category_id'] = item["id"] ?? ''; // Atualizando a categoria
-        chamadoData['custom_field[dcc9450fa904dc9de1e4e90cf43de37b]'] = item['equipamento'] ?? ''; // Atualizando equipamento
-        chamadoData["custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]"] = item['classificacao'] ?? ''; // Atualizando classificação
-        break; // Encerra o loop após encontrar uma correspondência
+        chamadoData['category_id'] = item["id"] ?? ''; 
+        chamadoData['custom_field[dcc9450fa904dc9de1e4e90cf43de37b]'] = item['equipamento'] ?? ''; 
+        chamadoData["custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]"] = item['classificacao'] ?? ''; 
+        break; 
       }
     }
 
@@ -110,8 +110,8 @@ class ApiService {
       // Vinculando o chamado ao operador
       final Uri vincularChamado = Uri.parse('${baseUrl}operator/link');
       final body = {
-        "ticket_id": parsedResponse["ticket_id"].toString(), // ID do ticket
-        "operator_id": "76b0d105906063317168fbde1ce837c3" // ID do operador
+        "ticket_id": parsedResponse["ticket_id"].toString(), 
+        "operator_id": "76b0d105906063317168fbde1ce837c3" 
       };
 
       var requestVincular = http.MultipartRequest('POST', vincularChamado)

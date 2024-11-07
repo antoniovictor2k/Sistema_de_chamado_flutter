@@ -11,24 +11,24 @@ class CustomDescricao extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
       child: Container(
-        height: 120, // Altura desejada para permitir múltiplas linhas
+        height: 120, 
         padding: EdgeInsets.symmetric(
-            horizontal: 15, vertical: 0), // Padding interno
+            horizontal: 15, vertical: 0), 
         decoration: BoxDecoration(
-          color: colorInput, // Cor de fundo
-          borderRadius: BorderRadius.circular(8), // Borda arredondada
+          color: colorInput, 
+          borderRadius: BorderRadius.circular(8),
         ),
         child: TextField(
-          maxLines: null, // Define que o campo pode ter múltiplas linhas
-          expands: true, // Expande o TextField para preencher o Container
+          maxLines: null, 
+          expands: true, 
           controller: controller,
           decoration: InputDecoration(
-            border: InputBorder.none, // Remove a borda padrão do TextField
+            border: InputBorder.none, 
             labelStyle: TextStyle(color: textColor),
             labelText: "Descrição",
             hintText: "Digite a descrição",
             alignLabelWithHint:
-                true, // Alinha o label com o início do texto quando o TextField tem múltiplas linhas
+                true, 
           ),
         ),
       ),

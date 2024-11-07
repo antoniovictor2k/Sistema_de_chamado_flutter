@@ -4,11 +4,6 @@ import 'package:sistema_de_chamado/src/components/CustomTextField.dart';
 import 'package:sistema_de_chamado/src/data/data.dart';
 import 'package:flutter/services.dart';
 
-
-
-
-
-
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
 
@@ -27,8 +22,8 @@ class _LoginpageState extends State<Loginpage> {
 
   @override
   void dispose() {
-    emailController.dispose(); // Libera o controlador ao finalizar o widget
-    senhaController.dispose(); // Libera o controlador ao finalizar o widget
+    emailController.dispose();
+    senhaController.dispose();
     super.dispose();
   }
 
@@ -97,10 +92,9 @@ class _LoginpageState extends State<Loginpage> {
                   onPressed: () {
                     String emailValue = emailController.text;
                     String senhaValue = senhaController.text;
-                    // Chama a função passWord() para obter a senha do arquivo JSON
-                 
 
-                    if (users.contains(emailValue) && senhaValue == "Carajas@2024") {
+                    if (users.contains(emailValue) &&
+                        senhaValue == "Carajas@2024") {
                       Navigator.of(context).pushReplacementNamed("/home",
                           arguments: {"email": emailValue});
                     } else {
@@ -119,9 +113,7 @@ class _LoginpageState extends State<Loginpage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               )),
-                          duration: Duration(
-                              seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                          duration: Duration(seconds: 2),
                         ),
                       );
                     }

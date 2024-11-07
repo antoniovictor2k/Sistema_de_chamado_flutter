@@ -6,7 +6,7 @@ import 'package:sistema_de_chamado/src/components/CustomDropdown.dart';
 import 'package:sistema_de_chamado/src/components/CustomFilePicker.dart';
 import 'package:sistema_de_chamado/src/components/CustomTextField.dart';
 import 'package:sistema_de_chamado/services/apiService.dart';
-import 'dart:io'; // Importante para usar a classe File
+import 'dart:io'; 
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -17,13 +17,13 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final TextEditingController assuntoController =
-      TextEditingController(); // Armazenar o valor do assunto
+      TextEditingController(); 
   final TextEditingController descricaoController =
-      TextEditingController(); // Armazenar o valor do e-mail
+      TextEditingController(); 
   
 
-  String? selectedCategory; // Variável para armazenar o valor da categoria
-  String? selectedBranch; // Variável para armazenar o valor da filial
+  String? selectedCategory;
+  String? selectedBranch; 
 
   // Lista de opções para os dropdowns
   final List<String> categorias = [
@@ -68,16 +68,16 @@ class _HomepageState extends State<Homepage> {
 
    @override
   void dispose() {
-    assuntoController.dispose(); // Libera o controlador ao finalizar o widget
-    descricaoController.dispose(); // Libera o controlador ao finalizar o widget
+    assuntoController.dispose(); 
+    descricaoController.dispose(); 
     
     super.dispose();
   }
 
   void limparDados() {
     setState(() {
-      selectedCategory = null; // Ou selectedCategory = ""; para limpar
-      selectedBranch = null; // Ou selectedBranch = ""; para limpar
+      selectedCategory = null; 
+      selectedBranch = null; 
       descricaoController.clear();
       selectedFiles.clear();
       assuntoController.clear();
@@ -91,7 +91,7 @@ class _HomepageState extends State<Homepage> {
     // Se o teclado estiver visível, retorna um Container vazio
     if (isKeyboardVisible) return Container();
 
-    return // INICIO Butão para criar novo chamado
+    return 
         Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: Padding(
@@ -123,7 +123,7 @@ class _HomepageState extends State<Homepage> {
                               )),
                           duration: Duration(
                               seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                                  2), 
                         ),
                       );
                       return;
@@ -143,7 +143,7 @@ class _HomepageState extends State<Homepage> {
                               )),
                           duration: Duration(
                               seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                                  2), 
                         ),
                       );
                       return;
@@ -164,7 +164,7 @@ class _HomepageState extends State<Homepage> {
                               )),
                           duration: Duration(
                               seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                                  2), 
                         ),
                       );
                       return;
@@ -185,7 +185,7 @@ class _HomepageState extends State<Homepage> {
                               )),
                           duration: Duration(
                               seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                                  2), 
                         ),
                       );
                       return;
@@ -194,7 +194,7 @@ class _HomepageState extends State<Homepage> {
                 // Chame a função criarChamado
                 if (assuntoValue != "" && descricaoValue != "" && selectedCategory != null && selectedBranch != null) {  
                 criarChamado(assuntoValue, descricaoValue, selectedCategory!,
-                    selectedBranch!); // Use parênteses para invocar a função
+                    selectedBranch!);
                 }else{
                    ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -210,12 +210,13 @@ class _HomepageState extends State<Homepage> {
                               )),
                           duration: Duration(
                               seconds:
-                                  2), // Tempo que o SnackBar ficará visível
+                                  2), 
                         ),
                       );
                 }
 
                 // Exibindo os valores no console
+
                 print(
                     "Assunto: $assuntoValue, \nDescrição: $descricaoValue, \nCategoria: $selectedCategory, \nFilial: $selectedBranch \nAnexos: $selectedFiles");
                 print("Novo Chamado");
@@ -231,7 +232,7 @@ class _HomepageState extends State<Homepage> {
           child: Text("OK"),
           onPressed: () {
             limparDados();
-            Navigator.of(context).pop(); // Fecha o diálogo
+            Navigator.of(context).pop(); 
             
           },
         ),
@@ -277,7 +278,7 @@ class _HomepageState extends State<Homepage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment:
-                  CrossAxisAlignment.start, // Alinha os filhos à esquerda
+                  CrossAxisAlignment.start, 
               children: [
                 // Campos Categoria
 
@@ -291,11 +292,11 @@ class _HomepageState extends State<Homepage> {
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment
-                          .spaceBetween, // Espaço entre os widgets
+                          .spaceBetween, 
                       children: [
                         Align(
                           alignment:
-                              Alignment.center, // Alinha o título à esquerda
+                              Alignment.center, 
                           child: Text(
                             'Categoria:',
                             style: TextStyle(color: Colors.white, fontSize: 16),
@@ -311,7 +312,7 @@ class _HomepageState extends State<Homepage> {
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedCategory =
-                                    newValue; // Atualiza o valor selecionado
+                                    newValue; 
                               });
                             },
                             hint: 'Selecione a Categoria',
@@ -336,11 +337,11 @@ class _HomepageState extends State<Homepage> {
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment
-                          .spaceBetween, // Espaço entre os widgets
+                          .spaceBetween, 
                       children: [
                         Align(
                           alignment:
-                              Alignment.center, // Alinha o título à esquerda
+                              Alignment.center, 
                           child: Text(
                             'Filial:',
                             style: TextStyle(color: Colors.white, fontSize: 16),
@@ -356,7 +357,7 @@ class _HomepageState extends State<Homepage> {
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedBranch =
-                                    newValue; // Atualiza o valor selecionado
+                                    newValue; 
                               });
                             },
                             hint: 'Selecione a Filial',
@@ -402,7 +403,7 @@ class _HomepageState extends State<Homepage> {
 
       // Recupera os argumentos passados
     final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    final email = args['email']; // Pega o e-mail dos argumentos
+    final email = args['email']; 
 
 
     return Scaffold(
@@ -416,7 +417,7 @@ class _HomepageState extends State<Homepage> {
 
       appBar: AppBar(
         title: Text("Tomticket - Chamado"),
-        backgroundColor: primaryColor, // Altera a cor de fundo da AppBar
+        backgroundColor: primaryColor, 
       ),
 
       // Corpo da pagina

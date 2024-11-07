@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
     theme: ThemeData(
-   primarySwatch: Colors.blue, // Muda a cor principal para azul
+   primarySwatch: Colors.blue, 
     brightness: Brightness.dark
     ),
     initialRoute: '/',

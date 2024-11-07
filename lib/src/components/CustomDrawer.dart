@@ -11,18 +11,18 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  late String emailUser; // Declare a variável
+  late String emailUser;
 
   @override
   void initState() {
     super.initState();
     emailUser =
-        widget.email ?? ''; // Inicializa a variável usando o valor do widget
+        widget.email ?? '';
   }
 
   String formatarNome(String emailUser) {
     // Extrai a parte do e-mail antes do domínio
-    String namePart = emailUser.split('@')[0]; // "antonio.seveirano"
+    String namePart = emailUser.split('@')[0]; 
 
     // Divide pelo ponto para obter o primeiro e segundo nome
     List<String> names = namePart.split('.');
@@ -90,7 +90,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   child: Text("OK"),
                                   onPressed: () {
                                     Navigator.of(context)
-                                        .pop(); // Fecha o diálogo
+                                        .pop(); 
                                   },
                                 ),
                               ],
@@ -98,7 +98,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           },
                         );
                       });
-                      // Navigator.of(context).pushReplacementNamed("/");
+                     
                     },
                   ),
                 ],
@@ -138,9 +138,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     textStyle: TextStyle(fontSize: 18),
                     backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
-                      // Define borda arredondada
+                      
                       borderRadius:
-                          BorderRadius.circular(8), // Tamanho do raio da borda
+                          BorderRadius.circular(8), 
                     ),
                   ),
                 ),

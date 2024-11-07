@@ -12,19 +12,19 @@ class CustomFilePicker extends StatefulWidget {
 }
 
 class _CustomFilePickerState extends State<CustomFilePicker> {
-  List<String> filePaths = []; // Armazena os caminhos dos arquivos selecionados
+  List<String> filePaths = []; 
 
   Future<void> pickFiles() async {
     // Usando o FilePicker para escolher arquivos
     FilePickerResult? result = await FilePicker.platform
-        .pickFiles(allowMultiple: true); // Permite seleção múltipla
+        .pickFiles(allowMultiple: true);
 
     if (result != null && result.files.isNotEmpty) {
       setState(() {
         // Adiciona os novos arquivos à lista de caminhos
         filePaths.addAll(result.files.map((file) => file.path!).toList());
       });
-        widget.onFilesSelected(filePaths); // Passa os arquivos para a página pai
+        widget.onFilesSelected(filePaths); 
     }
   }
 
@@ -38,10 +38,10 @@ class _CustomFilePickerState extends State<CustomFilePicker> {
           child: Container(
             alignment: Alignment.centerLeft,
             child: ElevatedButton(
-              onPressed: pickFiles, // Chama a função para selecionar arquivos
+              onPressed: pickFiles, 
               style: ElevatedButton.styleFrom(
                 backgroundColor:
-                    primaryColor, // Cor do botão (pode usar uma variável para a cor)
+                    primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -73,7 +73,7 @@ class _CustomFilePickerState extends State<CustomFilePicker> {
                 horizontal: 25,
               ),
               child: Text(
-                "${path.split('/').last}", // Mostra apenas o nome do arquivo
+                "${path.split('/').last}", 
                 style: TextStyle(fontSize: 16),
               ),
             )),
