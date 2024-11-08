@@ -8,7 +8,7 @@ import 'config.dart';
 
 class ApiService {
   // Método para criar o chamado com anexos
-  Future<void> criarChamado(String subject, String message, category, branch, List<File> attachments) async {
+  Future<String> criarChamado(String subject, String message, String category, String branch, String idUser, List<File> attachments) async {
 
     final Uri url = Uri.parse('${baseUrl}new');
     final Map<String, String> headers = {
@@ -141,13 +141,13 @@ class ApiService {
       final responseResponder = await requestResponder.send();
 
       if (responseResponder.statusCode == 200) {
-        print("Mensagem de resposta enviada com sucesso!");
+        return "Mensagem de resposta enviada com sucesso!";
       } else {
-        print("Falha ao enviar resposta: ${responseResponder.statusCode}");
+        return "Falha ao enviar resposta: ${responseResponder.statusCode}";
       }
     } else {
       final responseBody = await response.stream.bytesToString();
-      print("Erro ao criar chamado: ${response.statusCode} - $responseBody");
+      return "Erro ao criar chamado: ${response.statusCode} - $responseBody";
     }
   }
 }

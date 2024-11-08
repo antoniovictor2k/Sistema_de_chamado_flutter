@@ -21,6 +21,9 @@ class _LoginpageState extends State<Loginpage> {
   }
 
   @override
+
+// limpar quando a tela for alterada
+
   void dispose() {
     emailController.dispose();
     senhaController.dispose();
@@ -34,6 +37,7 @@ class _LoginpageState extends State<Loginpage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
           // Logo
 
           Container(
@@ -52,33 +56,26 @@ class _LoginpageState extends State<Loginpage> {
             hintText: "Digite seu e-mail",
             keyboardType: TextInputType.emailAddress,
             controller: emailController,
-            onChanged: (value) {
-              // Lógica para quando o texto mudar
-              print(value);
-            },
           ),
 
           // FIM Input E-mail
 
           // INICIO Input Senha
-
           CustomTextField(
             labelText: "Senha:",
             hintText: "Digite sua senha",
             keyboardType: TextInputType.text,
             obscureText: true,
             controller: senhaController,
-            onChanged: (value) {
-              print("Senha");
-            },
           ),
-
           // Fim Input Senha
 
-          // INICIO Butão entrar
+          // Altura de 10
           SizedBox(
             height: 10,
           ),
+
+          // INICIO Butão entrar
           Padding(
             padding: const EdgeInsets.only(
                 top: 0.0, bottom: 0.0, left: 15.0, right: 15.0),
@@ -98,8 +95,7 @@ class _LoginpageState extends State<Loginpage> {
                       Navigator.of(context).pushReplacementNamed("/home",
                           arguments: {"email": emailValue});
                     } else {
-                      print("Login invalido $emailValue");
-
+                     
                       // Exibe o SnackBar em caso de login inválido
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -136,10 +132,16 @@ class _LoginpageState extends State<Loginpage> {
     return Scaffold(
       body: Stack(
         children: [
+
+          // Cor de Fundo
           Container(
             color: backgroundColor,
           ),
+          
+          // corpo da pagina
           _body(),
+
+          // Texto fixo na parte inferior
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
