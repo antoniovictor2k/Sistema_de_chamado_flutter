@@ -5,11 +5,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'config.dart';
 
-
 class ApiService {
   // Método para criar o chamado com anexos
-  Future<String> criarChamado(String subject, String message, String category, String branch, String idUser, List<File> attachments) async {
-
+  Future<String> criarChamado(String subject, message, idUser, category, branch,
+      List<File> attachments) async {
     final Uri url = Uri.parse('${baseUrl}new');
     final Map<String, String> headers = {
       'Authorization': 'Bearer $token',
@@ -31,7 +30,8 @@ class ApiService {
       },
       {
         "id": "ee992ed87a2b15569db3b2ae601abf7d",
-        'nome': 'Desktop | Notebook - Lentidão (Anexar Evidência da Ocorrência) (Finalizaremos o Chamado Por Falta do Anexo)',
+        'nome':
+            'Desktop | Notebook - Lentidão (Anexar Evidência da Ocorrência) (Finalizaremos o Chamado Por Falta do Anexo)',
         'equipamento': 'Desktop',
         "classificacao": "Incidente"
       },
@@ -43,7 +43,8 @@ class ApiService {
       },
       {
         "id": "99b775304018617f6ead0dc12a45aba5",
-        'nome': "Desktop | Notebook - Não Liga | Barulho (Anexar Evidência da Ocorrência) (Finalizaremos o Chamado Por Falta do Anexo)",
+        'nome':
+            "Desktop | Notebook - Não Liga | Barulho (Anexar Evidência da Ocorrência) (Finalizaremos o Chamado Por Falta do Anexo)",
         'equipamento': 'Desktop',
         "classificacao": "Incidente"
       },
@@ -58,10 +59,10 @@ class ApiService {
     // Dados do chamado
     final Map<String, String> chamadoData = {
       'customer_id': idUser,
-      'department_id': idDepartment, 
+      'department_id': idDepartment,
       'subject': subject,
       'message': message,
-      'category_id': category, 
+      'category_id': category,
       'custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]': '',
       'custom_field[468245ce8477159f3e7f88cf06f93b6d]': branch,
       'custom_field[dcc9450fa904dc9de1e4e90cf43de37b]': '',
@@ -72,10 +73,12 @@ class ApiService {
     // Verificando a categoria no sistema de software de classificação
     for (var item in sistemaSoftwareClassificacao) {
       if (item['nome'] == category) {
-        chamadoData['category_id'] = item["id"] ?? ''; 
-        chamadoData['custom_field[dcc9450fa904dc9de1e4e90cf43de37b]'] = item['equipamento'] ?? ''; 
-        chamadoData["custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]"] = item['classificacao'] ?? ''; 
-        break; 
+        chamadoData['category_id'] = item["id"] ?? '';
+        chamadoData['custom_field[dcc9450fa904dc9de1e4e90cf43de37b]'] =
+            item['equipamento'] ?? '';
+        chamadoData["custom_field[0cc0c983628ab9a5d7d1e6bd690bbcc0]"] =
+            item['classificacao'] ?? '';
+        break;
       }
     }
 
@@ -110,8 +113,8 @@ class ApiService {
       // Vinculando o chamado ao operador
       final Uri vincularChamado = Uri.parse('${baseUrl}operator/link');
       final body = {
-        "ticket_id": parsedResponse["ticket_id"].toString(), 
-        "operator_id": "76b0d105906063317168fbde1ce837c3" 
+        "ticket_id": parsedResponse["ticket_id"].toString(),
+        "operator_id": "76b0d105906063317168fbde1ce837c3"
       };
 
       var requestVincular = http.MultipartRequest('POST', vincularChamado)
@@ -127,8 +130,9 @@ class ApiService {
       }
 
       // Responder o chamado com uma mensagem automática
-      final descricaoResponder = ("Prezado(a),\nRecebemos a sua solicitação e analisaremos em breve. "
-          "\n\nAtenciosamente,\nEquipe Central de Serviços - Tecnologia da Informação.");
+      final descricaoResponder =
+          ("Prezado(a),\nRecebemos a sua solicitação e analisaremos em breve. "
+              "\n\nAtenciosamente,\nEquipe Central de Serviços - Tecnologia da Informação.");
 
       final Uri responderChamado = Uri.parse('${baseUrl}reply/operator');
       var requestResponder = http.MultipartRequest('POST', responderChamado)

@@ -48,8 +48,8 @@ class _HomepageState extends State<Homepage> {
   List<String> selectedFiles = [];
 
   // Função para criar chamado
-  Future<void> criarChamado(String assunto, String mensagem, idUser,
-      String category, String branch) async {
+  Future<void> criarChamado(
+      String assunto, mensagem, idUser, category, branch) async {
     final ApiService apiService = ApiService();
 
     // Converte os caminhos de arquivo String em objetos File
@@ -231,31 +231,9 @@ class _HomepageState extends State<Homepage> {
                     descricaoValue != "" &&
                     selectedCategory != null &&
                     selectedBranch != null) {
-                  criarChamado(assuntoValue, descricaoValue, email,
+                  criarChamado(assuntoValue, descricaoValue, email!,
                       selectedCategory!, selectedBranch!);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: textColor,
-                      content: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Erro ao criar chamado, tente novamente!",
-                            style: TextStyle(
-                              color: colorInput,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
                 }
-
-                // Exibindo os valores no console
-
-                print(
-                    "Assunto: $assuntoValue, \nDescrição: $descricaoValue, \e-mail: $email, \nCategoria: $selectedCategory, \nFilial: $selectedBranch \nAnexos: $selectedFiles");
-                print("Novo Chamado");
               },
               child: Text(
                 "Novo Chamado",
